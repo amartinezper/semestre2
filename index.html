@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Resumen de temas: Java y Python</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--text:#e6eef8;--muted:#9fb0c8;--accent:#6ee7b7}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#061025 0%,#071324 100%); color:var(--text);}
+    header{padding:24px; background:linear-gradient(90deg, rgba(110,231,183,0.06), rgba(99,102,241,0.04)); border-bottom:1px solid rgba(255,255,255,0.03)}
+    header h1{margin:0;font-size:20px}
+    .container{display:grid; grid-template-columns:260px 1fr; gap:24px; padding:24px; max-width:1100px; margin:18px auto}
+    nav{background:rgba(255,255,255,0.02); padding:18px; border-radius:12px; height:calc(100vh - 140px); overflow:auto}
+    nav a{display:block; color:var(--muted); text-decoration:none; padding:8px 6px; border-radius:6px; margin-bottom:6px}
+    nav a:hover{background:rgba(255,255,255,0.02); color:var(--text)}
+    main{padding:18px; background:rgba(255,255,255,0.02); border-radius:12px; min-height:60vh; overflow:auto}
+    section{margin-bottom:20px}
+    h2{margin:6px 0 10px 0; color:var(--accent)}
+    p{color:var(--muted); line-height:1.5}
+    pre{background:#071726; padding:12px; border-radius:8px; overflow:auto; color:#dbeafe}
+    code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace}
+    .small{font-size:13px; color:#93c5fd}
+    footer{padding:12px; text-align:center; color:var(--muted); font-size:13px}
+    @media (max-width:800px){.container{grid-template-columns:1fr; padding:12px} nav{height:auto}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Resumen compacto: conceptos clave de Java y Python</h1>
+    <p class="small">Archivo estático (HTML + CSS). Usa la navegación para saltar entre temas.</p>
+  </header>
+  <div class="container">
+    <nav>
+      <strong>Java</strong>
+      <a href="#paradigma">Paradigma</a>
+      <a href="#clase">Clase</a>
+      <a href="#metodos-atributos">Método / Atributos</a>
+      <a href="#visibilidad">Visibilidad (public/private/protected)</a>
+      <a href="#encapsulamiento">Encapsulamiento (getters/setters)</a>
+      <a href="#constructores">Constructor / Sobrecarga</a>
+      <a href="#herencia">Herencia</a>
+      <a href="#agregacion">Agregación</a>
+      <a href="#abstractos">Métodos abstractos / Clases</a>
+      <a href="#final">final (clase/método/atributo)</a>
+      <a href="#interfaces">Interfaces</a>
+      <a href="#excepciones">Excepciones</a>
+      <a href="#hilos">Hilos</a>
+      <a href="#listas">Listas</a>
+      <a href="#enums">Enums</a>
+      <a href="#javafx">JavaFX</a>
+      <a href="#genericos">Genéricos</a>
+      <a href="#serializacion">Serialización y archivos</a>
+      <hr>
+      <strong>Python</strong>
+      <a href="#py-control">Estructuras de control (decisiones / ciclos)</a>
+      <a href="#py-colecciones">Diccionarios, tuplas, listas</a>
+    </nav>
+
+    <main>
+      <section id="paradigma">
+        <h2>Paradigma</h2>
+        <p>Un paradigma de programación es un estilo o enfoque para resolver problemas con código. Java es principalmente un lenguaje <strong>orientado a objetos (OOP)</strong>: organiza el código en clases y objetos, usando conceptos como herencia, encapsulamiento y polimorfismo. Python soporta múltiples paradigmas: OOP, imperativo y funcional.</p>
+      </section>
+
+      <section id="clase">
+        <h2>Clase</h2>
+        <p>Una clase es la plantilla para crear objetos. Define atributos (estado) y métodos (comportamiento).</p>
+        <pre><code>// Java
+public class Persona {
+  private String nombre;
+  private int edad;
+
+  public Persona(String nombre, int edad){
+    this.nombre = nombre;
+    this.edad = edad;
+  }
+
+  public void saludar(){
+    System.out.println("Hola, soy " + nombre);
+  }
+}
+</code></pre>
+      </section>
+
+      <section id="metodos-atributos">
+        <h2>Método - Atributos</h2>
+        <p>Atributos (fields) almacenan datos; métodos realizan acciones. Los métodos tienen firma (tipo de retorno, nombre y parámetros).</p>
+        <pre><code>// atributo y método
+private int contador;      // atributo
+public void incrementar(){ // método
+  contador++;
+}
+</code></pre>
+      </section>
+
+      <section id="visibilidad">
+        <h2>Visibilidad: public / private / protected</h2>
+        <p><strong>public</strong>: accesible desde cualquier clase. <strong>private</strong>: sólo dentro de la misma clase. <strong>protected</strong>: dentro del mismo paquete y subclases.</p>
+        <pre><code>public class A { public int x; protected int y; private int z; }</code></pre>
+      </section>
+
+      <section id="encapsulamiento">
+        <h2>Encapsulamiento (getters y setters)</h2>
+        <p>Consiste en ocultar los datos (atributos privados) y exponer acceso controlado mediante getters/setters.</p>
+        <pre><code>private String nombre;
+public String getNombre(){ return nombre; }
+public void setNombre(String n){ this.nombre = n; }
+</code></pre>
+      </section>
+
+      <section id="constructores">
+        <h2>Constructor - Sobrecarga de constructores</h2>
+        <p>El constructor inicializa objetos. Puedes tener varios constructores con distintas firmas (sobrecarga).</p>
+        <pre><code>public Persona(){ /* defecto */ }
+public Persona(String n){ this.nombre = n; }
+public Persona(String n, int e){ this.nombre = n; this.edad = e; }
+</code></pre>
+      </section>
+
+      <section id="herencia">
+        <h2>Herencia</h2>
+        <p>Permite que una clase <em>subclase</em> extienda a otra (<em>superclase</em>), heredando atributos y métodos.</p>
+        <pre><code>public class Animal { void comer(){} }
+public class Perro extends Animal { void ladrar(){} }
+</code></pre>
+      </section>
+
+      <section id="agregacion">
+        <h2>Agregación</h2>
+        <p>Es una relación "tiene-un". Un objeto contiene referencias a otros objetos. Si la vida del objeto contenido no depende del contenedor, es agregación (si depende, sería composición).</p>
+        <pre><code>public class Motor {}
+public class Auto { private Motor motor; public Auto(Motor m){ this.motor = m; } }
+</code></pre>
+      </section>
+
+      <section id="abstractos">
+        <h2>Métodos abstractos - Clases</h2>
+        <p>Una clase abstracta puede tener métodos sin implementación (abstractos). No se pueden instanciar directamente.</p>
+        <pre><code>public abstract class Figura {
+  abstract double area();
+}
+public class Circulo extends Figura {
+  private double r;
+  public double area(){ return Math.PI * r * r; }
+}
+</code></pre>
+      </section>
+
+      <section id="final">
+        <h2>Clase / Métodos / Atributos final</h2>
+        <p><strong>final</strong> evita la modificación: una clase final no puede extenderse; un método final no puede sobrescribirse; un atributo final es constante (inmutable después de asignación).</p>
+        <pre><code>public final class Util { public static final double PI = 3.14159; }
+</code></pre>
+      </section>
+
+      <section id="interfaces">
+        <h2>Interfaces</h2>
+        <p>Una interfaz declara métodos (sin implementación, aunque desde Java 8 puede tener default/static). Una clase implementa interfaces y se compromete a definir sus métodos.</p>
+        <pre><code>public interface Volador { void volar(); }
+public class Pajaro implements Volador { public void volar(){ /* ... */ } }
+</code></pre>
+      </section>
+
+      <section id="excepciones">
+        <h2>Excepciones</h2>
+        <p>Mecanismo para manejar errores en tiempo de ejecución. <code>try / catch / finally</code>. Java distingue checked exceptions (requieren ser declaradas/atrapadas) y unchecked (runtime).</p>
+        <pre><code>try {
+  int r = 10 / divisor;
+} catch (ArithmeticException e) {
+  System.out.println("Error: división por cero");
+} finally {
+  // se ejecuta siempre
+}
+</code></pre>
+      </section>
+
+      <section id="hilos">
+        <h2>Hilos (Threads)</h2>
+        <p>Permiten ejecutar tareas concurrentes. Se puede extender <code>Thread</code> o implementar <code>Runnable</code>. Controlar sincronización es clave para evitar condiciones de carrera.</p>
+        <pre><code>Thread t = new Thread(() -> {
+  for(int i=0;i<5;i++) System.out.println(i);
+});
+t.start();
+</code></pre>
+      </section>
+
+      <section id="listas">
+        <h2>Listas</h2>
+        <p>Colección ordenada. En la API de colecciones de Java se usan interfaces como <code>List</code> y clases como <code>ArrayList</code> o <code>LinkedList</code>.</p>
+        <pre><code>List&lt;String&gt; nombres = new ArrayList&lt;&gt;();
+nombres.add("Ana");
+for(String n : nombres) System.out.println(n);
+</code></pre>
+      </section>
+
+      <section id="enums">
+        <h2>Enums</h2>
+        <p>Sirven para definir conjuntos de constantes con nombre y se pueden enriquecer con campos y métodos.</p>
+        <pre><code>public enum Dia { LUNES, MARTES, MIERCOLES }
+</code></pre>
+      </section>
+
+      <section id="javafx">
+        <h2>JavaFX</h2>
+        <p>Framework para construir interfaces gráficas modernas en Java (reemplazante del antiguo Swing en muchos casos). Usa <code>Stage</code>, <code>Scene</code> y nodos como <code>Button</code>, <code>Label</code>.</p>
+        <pre><code>// Estructura mínima
+public class App extends Application {
+  public void start(Stage stage){
+    Button b = new Button("Hola");
+    stage.setScene(new Scene(new StackPane(b), 300, 200));
+    stage.show();
+  }
+}
+</code></pre>
+      </section>
+
+      <section id="genericos">
+        <h2>Genéricos</h2>
+        <p>Permiten tipos parametrizados (seguridad en tiempo de compilación). Ej: <code>List&lt;String&gt;</code> evita casts y errores de tipo.</p>
+        <pre><code>public class Caja&lt;T&gt; { private T valor; public void set(T v){ valor = v; } public T get(){ return valor; } }
+</code></pre>
+      </section>
+
+      <section id="serializacion">
+        <h2>Serialización y manejo de archivos</h2>
+        <p>Serializar convierte objetos a bytes para almacenarlos o transmitirlos. En Java: <code>Serializable</code> y <code>ObjectOutputStream/ObjectInputStream</code>. Para archivos, usar <code>Files</code> o streams.</p>
+        <pre><code>try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("obj.dat"))){
+  oos.writeObject(miObjeto);
+}
+</code></pre>
+      </section>
+
+      <section id="py-control">
+        <h2>Python: Estructuras de control — decisiones y ciclos</h2>
+        <p>Condicionales con <code>if/elif/else</code>. Bucles con <code>for</code> y <code>while</code>. Python usa indentación para los bloques.</p>
+        <pre><code># if
+x = 10
+if x &gt; 5:
+  print('mayor')
+
+# for
+for i in range(5):
+  print(i)
+
+# while
+while x &gt; 0:
+  x -= 1
+</code></pre>
+      </section>
+
+      <section id="py-colecciones">
+        <h2>Python: Diccionarios, Tuplas, Listas</h2>
+        <p><strong>Listas</strong> son colecciones ordenadas y mutables. <strong>Tuplas</strong> son como listas pero inmutables. <strong>Diccionarios</strong> son mapas clave→valor.</p>
+        <pre><code># lista
+lista = [1,2,3]
+# tupla
+tupla = (1,2)
+# diccionario
+dic = {'nombre':'Ana', 'edad':30}
+print(dic['nombre'])
+</code></pre>
+      </section>
+
+      <footer>
+        Página generada para estudio — puedes copiar este archivo y abrirlo en el navegador.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
